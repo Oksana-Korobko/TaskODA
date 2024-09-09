@@ -6,6 +6,7 @@
 #include <iostream>
 
 
+
 class Triangle : public BaseObject {
 public:
     Triangle() : p1(), p2(), p3() {}
@@ -26,6 +27,47 @@ public:
         topLeft.y = std::max({ p1.y, p2.y, p3.y });
         bottomRight.x = std::max({ p1.x, p2.x, p3.x });
         bottomRight.y = std::min({ p1.y, p2.y, p3.y });
+    }
+
+    void orientedBoundingBox(Point& p1, Point& p2, Point& p3) {
+        Point center;
+        center.x = (p1.x + p2.x + p3.x)/3;
+        center.y = (p1.y + p2.y + p3.y) / 3;
+
+        //Обчислення матриці
+        double covXX = ((center.x-p1.x)* (center.x - p1.x) + (center.x - p2.x) * (center.x - p2.x) + (center.x - p3.x)* (center.x - p3.x))/3;
+        double covXY = ((center.x - p1.x) * (center.y - p1.y) + (center.x - p2.x) * (center.y - p2.y) + (center.x - p3.x) * (center.y - p3.y)) / 3;
+        double covYY = ((center.y - p1.y) * (center.y - p1.y) + (center.y - p2.y) * (center.x - p2.y) + (center.x - p3.y) * (center.y - p3.y)) / 3;
+        
+        //Обчислення власних значень
+        double sumCov = covXX + covYY;
+        double determinant = covXX * covYY - covXY * covXY;
+        double l1 = sumCov / 2 + sqrt(sumCov * sumCov / 4 - determinant);  
+        double l2 = sumCov / 2 - sqrt(sumCov * sumCov / 4 - determinant);
+
+        // Обчислення напрямків власних векторів
+        double eigVecX = covXY != 0 ? l1 - covYY : 1;
+        double eigVecY = eigVecX != 0 ? covXY / eigVecX : 1;
+        double angle = atan2(eigVecY, eigVecX);
+
+        //Проектування точок на нові осі
+        double minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+        Point points[3] = { p1, p2, p3 };
+        for (int i = 0; i < 3; i++ ) {
+            double rotateX = (points[i].x - center.x) * cos(angle) + (points[i].y - center.y) * sin(angle);
+            double rotateY = -(points[i].x - center.x) * sin(angle) + (points[i].y - center.y) * cos(angle);
+
+            if (rotateX < minX) minX = rotateX;
+            if (rotateX > maxX) maxX = rotateX;
+            if (rotateY < minY) minY = rotateY;
+            if (rotateY > maxY) maxY = rotateY;
+        }
+
+        // Обчислення ширини, висотита центру OBB
+        double width = maxX - minX;
+        double height = maxY - minY;
+        Point obbCenter = { center.x, center.y };
+       
     }
 
     void saveToFile(const std::string& filename) override {

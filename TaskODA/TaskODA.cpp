@@ -289,6 +289,10 @@ public:
         center = std::make_unique<Point>((minx + maxx) / 2, (miny + maxy) / 2);
     };
 
+    void orientedBoundingBox() {
+
+    }
+
     void saveToFile(const std::string& filename) override {
         std::ofstream file(filename);
         if (file.is_open()) {
@@ -362,13 +366,18 @@ int main() {
 
 
 
+
+
         { // set triangle
             Point p1(1.0, 1.0);
             Point p2(3.0, 3.0);
             Point p3(4.0, 2.0);
             ((Triangle*)pTriangle_1)->set(p1, p2, p3);
             pTriangle_2->set(p1, p2, p3);
+            ((Triangle*)pTriangle_1)-> orientedBoundingBox(p1, p2, p3); //===========================
         }
+        
+
 
         { // set Circle
             Point p1(1.0, 1.0);

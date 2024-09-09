@@ -1,4 +1,2 @@
 ﻿  pch.cpp
-  UnitTest1.cpp
-     Creating library D:\C++\TaskODA\TaskODA\x64\Debug\UnitTest1.lib and object D:\C++\TaskODA\TaskODA\x64\Debug\UnitTest1.exp
-  UnitTest1.vcxproj -> D:\C++\TaskODA\TaskODA\x64\Debug\UnitTest1.dll
+D:\C++\Task\TaskODA\UnitTest1\pch.cpp(1,1): error C1090: PDB API call failed, error code '3': D:\C++\Task\TaskODA\UnitTest1\x64\Debug\vc143.pdb
