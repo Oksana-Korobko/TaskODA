@@ -55,7 +55,7 @@ public:
     };
 
     void saveToFile(const std::string& filename) override {
-        std::ofstream file(filename);
+        std::ofstream file(filename, std::ios::app);
         if (file.is_open()) {
             file << "Rect" << std::endl;
             file << p1.x << " " << p1.y << std::endl;
@@ -112,7 +112,7 @@ public:
     }
 
     void saveToFile(const std::string& filename) override {
-        std::ofstream file(filename);
+        std::ofstream file(filename, std::ios::app);
         if (file.is_open()) {
             file << "Circle" << std::endl;
             file << center->x << " " << center->y << std::endl;
@@ -254,7 +254,7 @@ public:
     }
 
     void saveToFile(const std::string& filename) override {
-        std::ofstream file(filename);
+        std::ofstream file(filename, std::ios::app);
         if (file.is_open()) {
             file << "Polyline" << std::endl;
             for (int i = 0; i < k; i++) {
@@ -345,7 +345,8 @@ int main() {
             pCircle_2->set(p1, 5.0);
         }
 
-
+        pCircle_1->saveToFile("Ready.txt");
+        pTriangle_2->saveToFile("Ready.txt");
 
 
         if (pRect_1->getCenter()->x != 3.0 || pRect_1->getCenter()->y != 3.0)

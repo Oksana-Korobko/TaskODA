@@ -71,7 +71,7 @@ public:
     }
 
     void saveToFile(const std::string& filename) override {
-        std::ofstream file(filename);
+        std::ofstream file(filename, std::ios::app);
         if (file.is_open()) {
             file << "Triangle" << std::endl;
             file << p1.x << " " << p1.y << std::endl;
