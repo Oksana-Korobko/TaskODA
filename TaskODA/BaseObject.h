@@ -4,6 +4,7 @@
 #include "Point.h"
 #include <memory>
 #include <string>
+#include <cstdint>
 
 struct Color {
     int r;
@@ -15,16 +16,16 @@ struct Color {
 
 class BaseObject {
 public:
-    BaseObject() : center(nullptr), color(0, 0, 0) {};
+    BaseObject() : center(nullptr), color(0) {};
     virtual Point* getCenter() = 0;
-    void setColor(int r, int g, int b) { color = Color(r, g, b); };
+    virtual void setColor(uint8_t r, uint8_t g, uint8_t b) = 0 ;
     virtual void boundingBox(Point& topLeft, Point& bottomRight) = 0;
     virtual void saveToFile(const std::string& filename) = 0;
     virtual void loadFromFile(const std::string& filename) = 0;
 
 protected:
     std::unique_ptr<Point> center;
-    Color color;
+    uint32_t color;
 };
 
 #endif // BASEOBJECT_H

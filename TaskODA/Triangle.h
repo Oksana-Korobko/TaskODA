@@ -18,6 +18,10 @@ public:
         center = std::make_unique<Point>((p1.x + p2.x + p3.x) / 3, (p1.y + p2.y + p3.y) / 3);
     }
 
+    void setColor(uint8_t r, uint8_t g, uint8_t b) override {
+        color = (r << 16) | (g << 8) | b;
+    }
+
     Point* getCenter() override {
         return center.get();
     }

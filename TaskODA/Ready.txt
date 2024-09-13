@@ -1,11 +1,88 @@
-Rect
-1 1
-1 5
-5 5
-5 1
 Circle
 1 1
 5
+0
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+0
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+0
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+0
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+0
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+1047189
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+1047189
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+1047189
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+1047189
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+1047189
+Triangle
+1 1
+3 3
+4 2
+Circle
+1 1
+5
+15250149
+1047189
 Triangle
 1 1
 3 3

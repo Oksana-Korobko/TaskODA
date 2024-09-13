@@ -1,2 +1,5 @@
 ﻿  pch.cpp
-D:\C++\Task\TaskODA\UnitTest1\pch.cpp(1,1): error C1090: PDB API call failed, error code '3': D:\C++\Task\TaskODA\UnitTest1\x64\Debug\vc143.pdb
+  UnitTest1.cpp
+D:\C++\Task\TaskODA\UnitTest1\UnitTest1.cpp(1,10): error C1041: cannot open program database 'D:\C++\Task\TaskODA\UnitTest1\x64\Debug\vc143.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+  (compiling source file '/UnitTest1.cpp')
+  

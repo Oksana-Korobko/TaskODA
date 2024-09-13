@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cmath>
 #include <string>
+#include <cstdint>
 #include <cstdarg>
 #include "Point.h"
 #include "BaseObject.h"
@@ -41,6 +42,9 @@ public:
         set(arguments ...);
     }
 
+    void setColor(uint8_t r, uint8_t g, uint8_t b) override {
+        color = (r << 16) | (g << 8) | b;
+    }
 
     Point* getCenter() override {
         return center.get();
@@ -100,6 +104,11 @@ public:
         radius = radius_;
     }
 
+    void setColor(uint8_t r, uint8_t g, uint8_t b) override {
+        color = (r << 16) | (g << 8) | b;
+        //std::cout<<color;
+    };
+
     Point* getCenter() override {
         return center.get();
     }
@@ -117,6 +126,7 @@ public:
             file << "Circle" << std::endl;
             file << center->x << " " << center->y << std::endl;
             file << radius << std::endl;
+            file << ((color >> 16) & 0xFF) << ((color >> 8) & 0xFF) << (color  & 0xFF) << std::endl;
             file.close();
         }
     }
@@ -343,10 +353,13 @@ int main() {
             Point p1(1.0, 1.0);
             ((Circle*)pCircle_1)->set(p1, 5.0);
             pCircle_2->set(p1, 5.0);
+            pCircle_2->setColor(15, 250, 149); // for testing
         }
 
-        pCircle_1->saveToFile("Ready.txt");
-        pTriangle_2->saveToFile("Ready.txt");
+
+        pCircle_2->saveToFile("Ready.txt");// for testing
+        pTriangle_2->saveToFile("Ready.txt");// for testing
+
 
 
         if (pRect_1->getCenter()->x != 3.0 || pRect_1->getCenter()->y != 3.0)
@@ -367,6 +380,7 @@ int main() {
         if (std::abs(pTriangle_2->getCenter()->x - 2.6) > 0.1 || pTriangle_2->getCenter()->y != 2.0)
             printf("FAIL 6\n");
 
+        
         delete pRect_1;
         delete pRect_2;
         delete pCircle_1;
